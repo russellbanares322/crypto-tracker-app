@@ -14,7 +14,10 @@ const Coin = ({
     <div className="container-fluid mr-4">
       <div className="row">
         <div className="col-lg-12 col-sm-12">
-          <div className="card mt-4 shadow-lg p-3 mb-5 bg-body rounded">
+          <div
+            className="card mt-4 p-3 mb-5 bg-body rounded card_box"
+            style={{ backgroundColor: "#DADCE0" }}
+          >
             <div className="card-body">
               <div className="row">
                 <div className="col-lg-1 col-sm-1">
