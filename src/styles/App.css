@@ -34,6 +34,7 @@
 }
 .main_title{
   text-shadow: -3px 1px 0px rgba(60, 64, 67, 1);
+  text-align: center;
 }
 
 @keyframes App-logo-spin {
@@ -51,6 +52,9 @@ hr {
   background-color: #333;
 }
 
+.cn-search {
+  color: white;
+}
 .price {
   padding-left: 80px;
 }
@@ -93,6 +97,9 @@ hr {
   padding-left: 10px;
 }
 @media only screen and (max-width: 500px) {
+  .main_title{
+    font-size: 1.7rem;
+  }
   .img-con {
     margin-left: 100px;
     height: 50px;
