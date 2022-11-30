@@ -2,13 +2,11 @@ import { Row, Col, Image } from "antd";
 import React from "react";
 import styles from "./styles.module.css";
 import mainImage from "../../images/crypto.svg";
-import Navbar from "../Navbar/Navbar";
 import Coin from "../Coin/Coin";
 
 const MainLayout = () => {
   return (
     <div className={styles.mainLayout}>
-      <Navbar />
       <Row>
         <Col lg={12} xl={12} md={12} sm={24}>
           <p className={styles.mainTitle}>

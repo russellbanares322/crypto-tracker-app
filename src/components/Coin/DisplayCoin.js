@@ -1,11 +1,24 @@
-import React from "react";
+import React, { useContext, useEffect } from "react";
 import { Button, Table, Typography } from "antd";
 import styles from "./styles.module.css";
 import { useNavigate } from "react-router-dom";
+import CoinContext from "../context/CoinContext";
 
 const DisplayCoin = ({ data }) => {
   const { Title } = Typography;
   const navigate = useNavigate();
+
+  const { currency, setCurrency } = useContext(CoinContext);
+
+  useEffect(() => {
+    const currencyData = localStorage.getItem(
+      "currency",
+      JSON.stringify(currency)
+    );
+    if (currencyData) {
+      setCurrency(currencyData);
+    }
+  }, []);
   //Table Column
   const columns = [
     {
@@ -36,7 +49,9 @@ const DisplayCoin = ({ data }) => {
       key: "current_price",
       sorter: (a, b) => a.current_price - b.current_price,
       render: (value) => {
-        return "$" + value.toLocaleString();
+        return currency === "USD"
+          ? "$" + value.toLocaleString()
+          : "₱" + value.toLocaleString();
       },
     },
     {
@@ -74,6 +89,15 @@ const DisplayCoin = ({ data }) => {
       <Title className={styles.title} level={2}>
         Cryptocurrency Prices
       </Title>
+      <div className={styles.selectDiv}>
+        <select onChange={(e) => setCurrency(e.target.value)}>
+          <option value={currency} style={{ display: "none" }}>
+            {currency}
+          </option>
+          <option value="USD">USD</option>
+          <option value="PHP">PHP</option>
+        </select>
+      </div>
       <div className={styles.table}>
         <Table
           rowKey="id"
