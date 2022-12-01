@@ -87,7 +87,7 @@ const DisplayCoin = ({ data }) => {
   return (
     <div className={styles.body}>
       <Title className={styles.title} level={2}>
-        Cryptocurrency Prices
+        Cryptocurrency Price
       </Title>
       <div className={styles.selectDiv}>
         <select onChange={(e) => setCurrency(e.target.value)}>
