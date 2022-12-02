@@ -1,0 +1,32 @@
+.body {
+    padding-top: 17rem;
+    background-color: #D2DBD8;
+}
+.carouselTitle {
+    text-align: center;
+    font-size: 2.5rem;
+}
+/* Carousel Card */
+.card {
+margin-top: 8rem !important;
+display: flex;
+align-items: center;
+height: 150%;
+width: 150%;
+}
+.cardImg {
+height: 150px !important;
+width: 150px !important;
+}
+.cardBody {
+border: 1px solid #6FD691;
+border-radius: 0.6rem;
+background-color: #F3F3F3;
+padding: 1.5rem;
+}
+.cardPriceChange {
+text-align: center;
+}
+.cardPrice{
+    text-align: center;
+}

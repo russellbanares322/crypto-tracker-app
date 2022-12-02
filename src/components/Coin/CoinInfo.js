@@ -17,7 +17,6 @@ const CoinInfo = () => {
       .get(`${REACT_APP_COIN_API}/${id}`)
       .then((res) => {
         setCoinInfo(res.data);
-        console.log(res);
         setIsLoading(false);
       })
       .catch((err) => {

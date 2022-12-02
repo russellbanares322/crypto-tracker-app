@@ -3,6 +3,7 @@ import React from "react";
 import styles from "./styles.module.css";
 import mainImage from "../../images/crypto.svg";
 import Coin from "../Coin/Coin";
+import Carousel from "../Carousel/Carousel";
 
 const MainLayout = () => {
   return (
@@ -21,6 +22,9 @@ const MainLayout = () => {
           <Image className={styles.mainImg} src={mainImage} preview={false} />
         </Col>
       </Row>
+      <div>
+        <Carousel />
+      </div>
       <Coin />
       <footer>Created by Russ</footer>
     </div>

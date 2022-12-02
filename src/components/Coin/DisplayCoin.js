@@ -62,6 +62,7 @@ const DisplayCoin = ({ data }) => {
       render: (value) => {
         return (
           <p style={{ color: value < 0 ? "red" : "green" }}>
+            {value > 0 && "+"}
             {value.toFixed(2) + "%"}
           </p>
         );
