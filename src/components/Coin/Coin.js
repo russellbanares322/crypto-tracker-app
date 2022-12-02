@@ -19,10 +19,6 @@ const Coin = () => {
       .then((res) => {
         setCoinData(res.data);
         setIsLoading(false);
-        console.log(res);
-      })
-      .catch((err) => {
-        console.log(err);
       });
   };
 
