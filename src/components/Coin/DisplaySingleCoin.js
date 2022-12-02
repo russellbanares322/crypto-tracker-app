@@ -1,6 +1,5 @@
 import { Row, Col } from "antd";
 import React, { useContext, useEffect } from "react";
-import ReactHtmlParser from "react-html-parser";
 import { ClipLoader } from "react-spinners";
 import CoinContext from "../context/CoinContext";
 import styles from "./styles.module.css";
@@ -53,7 +52,7 @@ const DisplaySingleCoin = ({
                 <strong>Rank:</strong> {market_cap_rank}
               </p>
               <p className={styles.coinDesc}>
-                {ReactHtmlParser(description?.en.split(". ")[0])}.
+                {description?.en.split(". ")[0]}.
               </p>
             </Col>
             <Col lg={12} xl={12} md={12} sm={24}>
