@@ -3,6 +3,7 @@ import React, { useContext, useEffect } from "react";
 import { ClipLoader } from "react-spinners";
 import CoinContext from "../context/CoinContext";
 import styles from "./styles.module.css";
+import ReactHtmlParser from "react-html-parser";
 
 const DisplaySingleCoin = ({
   isLoading,
@@ -52,7 +53,7 @@ const DisplaySingleCoin = ({
                 <strong>Rank:</strong> {market_cap_rank}
               </p>
               <p className={styles.coinDesc}>
-                {description?.en.split(". ")[0]}.
+                {ReactHtmlParser(description?.en.split(". ")[0])}.
               </p>
             </Col>
             <Col lg={12} xl={12} md={12} sm={24}>

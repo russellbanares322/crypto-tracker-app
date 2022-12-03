@@ -28,8 +28,9 @@ const Carousel = () => {
 
   const handleDragStart = (e) => e.preventDefault();
   const responsive = {
-    569: { items: 5 },
     0: { items: 4 },
+    568: { items: 4 },
+    1024: { items: 4 },
   };
 
   const items = trendingCoin.map((coin) => {
