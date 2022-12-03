@@ -3,12 +3,13 @@ import React, { useContext, useEffect, useState } from "react";
 import AliceCarousel from "react-alice-carousel";
 import CoinContext from "../context/CoinContext";
 import styles from "./styles.module.css";
+import { useNavigate } from "react-router-dom";
 
 const Carousel = () => {
   const { REACT_APP_COIN_API } = process.env;
   const { currency } = useContext(CoinContext);
   const [trendingCoin, setTrendingCoin] = useState([]);
-
+  const navigate = useNavigate();
   //Fetching of trending coins
   useEffect(() => {
     axios
@@ -24,15 +25,20 @@ const Carousel = () => {
   }, [currency]);
 
   //Carousel data
+
+  const handleDragStart = (e) => e.preventDefault();
   const responsive = {
-    0: { items: 2 },
-    512: { items: 4 },
-    1024: { items: 5 },
+    569: { items: 5 },
+    0: { items: 4 },
   };
+
   const items = trendingCoin.map((coin) => {
     return (
-      <div key={coin?.id} className={styles.card}>
-        <div className={styles.cardBody}>
+      <div key={coin?.id} className={styles.card} onDragStart={handleDragStart}>
+        <div
+          className={styles.cardBody}
+          onClick={() => navigate(`/coin-info/${coin.id}`)}
+        >
           <img alt="coinImage" className={styles.cardImg} src={coin?.image} />
           <p
             className={styles.cardPriceChange}
@@ -53,18 +59,20 @@ const Carousel = () => {
   return (
     <div className={styles.body}>
       <p className={styles.carouselTitle}>Trending Coins</p>
-      <AliceCarousel
-        mouseTracking
-        items={items}
-        responsive={responsive}
-        controlsStrategy="alternate"
-        infinite
-        animationDuration={15000}
-        autoPlay
-        autoPlayInterval={1000}
-        disableDotsControls
-        disableButtonsControls
-      />
+      <div className="container">
+        <AliceCarousel
+          mouseTracking
+          items={items}
+          responsive={responsive}
+          controlsStrategy="alternate"
+          infinite
+          animationDuration={15000}
+          autoPlay
+          autoPlayInterval={1000}
+          disableDotsControls
+          disableButtonsControls
+        />
+      </div>
     </div>
   );
 };
