@@ -19,6 +19,11 @@ const DisplayCoin = ({ data }) => {
       setCurrency(currencyData);
     }
   }, []);
+
+  const handleChange = (e) => {
+    e.preventDefault();
+    setCurrency(e.target.value);
+  };
   //Table Column
   const columns = [
     {
@@ -91,7 +96,7 @@ const DisplayCoin = ({ data }) => {
         Cryptocurrency Price
       </Title>
       <div className={styles.selectDiv}>
-        <select onChange={(e) => setCurrency(e.target.value)}>
+        <select onChange={handleChange}>
           <option value={currency} style={{ display: "none" }}>
             {currency}
           </option>
