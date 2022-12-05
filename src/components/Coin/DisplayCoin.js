@@ -8,7 +8,7 @@ const DisplayCoin = ({ data }) => {
   const { Title } = Typography;
   const navigate = useNavigate();
 
-  const { currency, setCurrency } = useContext(CoinContext);
+  const { currency, setCurrency, handleChange } = useContext(CoinContext);
 
   useEffect(() => {
     const currencyData = localStorage.getItem(
@@ -20,10 +20,6 @@ const DisplayCoin = ({ data }) => {
     }
   }, []);
 
-  const handleChange = (e) => {
-    e.preventDefault();
-    setCurrency(e.target.value);
-  };
   //Table Column
   const columns = [
     {

@@ -23,7 +23,7 @@ const DisplaySingleCoin = ({
     if (currencyData) {
       setCurrency(currencyData);
     }
-  }, [currency]);
+  }, []);
 
   return (
     <div className={styles.body}>
