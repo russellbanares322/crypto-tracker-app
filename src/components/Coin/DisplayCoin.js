@@ -11,10 +11,7 @@ const DisplayCoin = ({ data }) => {
   const { currency, setCurrency, handleChange } = useContext(CoinContext);
 
   useEffect(() => {
-    const currencyData = localStorage.getItem(
-      "currency",
-      JSON.stringify(currency)
-    );
+    const currencyData = localStorage.getItem("currency", currency);
     if (currencyData) {
       setCurrency(currencyData);
     }
