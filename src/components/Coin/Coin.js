@@ -11,15 +11,22 @@ const Coin = () => {
 
   //Fetching of Cryptocurrency data
   const fetchData = async () => {
-    setIsLoading(true);
-    await axios
-      .get(
-        `${REACT_APP_COIN_API}/markets?vs_currency=${currency}&order=market_cap_desc&per_page=50&page=1&sparkline=false`
-      )
-      .then((res) => {
-        setCoinData(res.data);
-        setIsLoading(false);
-      });
+    const check = localStorage.getItem("coin");
+
+    if (check) {
+      setCoinData(JSON.parse(check));
+    } else {
+      setIsLoading(true);
+      await axios
+        .get(
+          `${REACT_APP_COIN_API}/markets?vs_currency=${currency}&order=market_cap_desc&per_page=50&page=1&sparkline=false`
+        )
+        .then((res) => {
+          localStorage.setItem("coin", JSON.stringify(res.data));
+          setCoinData(res.data);
+          setIsLoading(false);
+        });
+    }
   };
 
   useEffect(() => {

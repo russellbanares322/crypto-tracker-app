@@ -28,10 +28,14 @@ const CoinInfo = () => {
   useEffect(() => {
     id && getCoinInfo();
   }, [id]);
+
   return (
-    <div className={styles.coinInfoBody}>
-      <DisplaySingleCoin {...coinInfo} isLoading={isLoading} />
-    </div>
+    <>
+      <div className={styles.coinInfoBody}>
+        <DisplaySingleCoin {...coinInfo} isLoading={isLoading} />
+      </div>
+      {/* <CoinChart /> */}
+    </>
   );
 };
 
