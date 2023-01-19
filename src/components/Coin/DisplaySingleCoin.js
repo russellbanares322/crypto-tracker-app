@@ -1,9 +1,9 @@
 import { Row, Col } from "antd";
 import React, { useContext, useEffect } from "react";
-import { ClipLoader } from "react-spinners";
 import CoinContext from "../context/CoinContext";
 import styles from "./styles.module.css";
 import ReactHtmlParser from "react-html-parser";
+import { Triangle } from "react-loader-spinner";
 
 const DisplaySingleCoin = ({
   isLoading,
@@ -20,13 +20,26 @@ const DisplaySingleCoin = ({
     if (currencyData) {
       setCurrency(currencyData);
     }
+    // eslint-disable-next-line
   }, []);
 
   return (
     <div className={styles.body}>
       {isLoading ? (
         <div className={styles.coinInfoLoader}>
-          <ClipLoader size={70} color="#19b84eea" />
+          <Triangle
+            height="130"
+            width="130"
+            color="#6FD691"
+            ariaLabel="triangle-loading"
+            wrapperStyle={{
+              display: "flex",
+              justifyContent: "center",
+              alignItems: "center",
+            }}
+            wrapperClassName=""
+            visible={true}
+          />
         </div>
       ) : (
         <>

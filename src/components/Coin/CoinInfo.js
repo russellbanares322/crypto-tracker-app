@@ -27,6 +27,7 @@ const CoinInfo = () => {
 
   useEffect(() => {
     id && getCoinInfo();
+    // eslint-disable-next-line
   }, [id]);
 
   return (

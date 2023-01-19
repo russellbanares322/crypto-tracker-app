@@ -31,6 +31,7 @@ const Coin = () => {
 
   useEffect(() => {
     fetchData();
+    // eslint-disable-next-line
   }, [currency]);
   return (
     <>

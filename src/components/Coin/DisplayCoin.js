@@ -75,7 +75,10 @@ const DisplayCoin = ({ data }) => {
         return (
           <Button
             className={styles.tableBttn}
-            onClick={() => navigate(`/coin-info/${coin.id}`)}
+            onClick={() => {
+              navigate(`/coin-info/${coin.id}`);
+              window.scroll(0, 0);
+            }}
           >
             View
           </Button>

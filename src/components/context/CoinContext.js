@@ -1,9 +1,18 @@
-import { createContext, useState } from "react";
+import { createContext, useEffect, useState } from "react";
 
 const CoinContext = createContext();
 
 export const CryptoProvider = ({ children }) => {
   const [currency, setCurrency] = useState("USD");
+  const [isLoading, setIsLoading] = useState(false);
+
+  useEffect(() => {
+    setIsLoading(true);
+
+    setTimeout(() => {
+      setIsLoading(false);
+    }, 2000);
+  }, []);
 
   const handleChange = (e) => {
     e.preventDefault();
@@ -12,7 +21,9 @@ export const CryptoProvider = ({ children }) => {
   };
 
   return (
-    <CoinContext.Provider value={{ currency, setCurrency, handleChange }}>
+    <CoinContext.Provider
+      value={{ currency, setCurrency, handleChange, isLoading }}
+    >
       {children}
     </CoinContext.Provider>
   );

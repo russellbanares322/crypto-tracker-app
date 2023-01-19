@@ -10,3 +10,7 @@ footer {
     text-align: center;
     padding: 1rem;
 }
+.loader_wrapper {
+    background-color: #CFD8D5;
+    height: 100vh;
+}
