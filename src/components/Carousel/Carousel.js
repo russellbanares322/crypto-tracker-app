@@ -42,7 +42,10 @@ const Carousel = () => {
         onDragStart={handleDragStart}
         key={coin?.id}
         className={styles.cardBody}
-        onClick={() => navigate(`/coin-info/${coin.id}`)}
+        onClick={() => {
+          navigate(`/coin-info/${coin.id}`);
+          window.scroll(0, 0);
+        }}
       >
         <img alt="coinImage" className={styles.cardImg} src={coin?.image} />
         <p className={styles.cardCoinName}>{coin?.name}</p>

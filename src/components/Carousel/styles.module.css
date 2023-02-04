@@ -51,6 +51,10 @@
 }
 /* Media Queries */
 @media all and (max-width:500px) {
+    .body {
+        padding-top: 8rem;
+        background-color: #D2DBD8;
+    }
     .carouselTitle {
         text-align: center;
         font-size: 2rem;

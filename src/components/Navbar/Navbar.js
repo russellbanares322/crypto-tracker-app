@@ -9,7 +9,7 @@ const Navbar = () => {
       <nav className={styles.navbar}>
         <ul className={styles.ul}>
           <li onClick={() => navigate("/")}>
-            Crypto<span className={styles.span}>Tracker</span>
+            Tracke<span className={styles.span}>roo</span>
           </li>
         </ul>
       </nav>

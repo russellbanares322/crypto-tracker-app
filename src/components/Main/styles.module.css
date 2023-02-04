@@ -1,6 +1,6 @@
 .mainLayout {
     background-color: #D2DBD8;
-    height: 90vh;
+    height: 100vh;
 }
 .mainTitle {
     padding-top: 10rem;
@@ -63,7 +63,6 @@
         width: 20rem !important;
     }
     .mainLayout {
-        background-color: #D2DBD8;
         height: 120vh;
     }
     
