@@ -11,7 +11,7 @@ const DisplayCoin = () => {
   const navigate = useNavigate();
   const { currency } = useContext(CoinContext);
   const { response } = useFetch(
-    `coins/markets?vs_currency=${currency}&order=market_cap_desc&per_page=50&page=1&sparkline=false`
+    `coins/markets?vs_currency=${currency.toLowerCase()}&order=market_cap_desc&per_page=50&page=1&sparkline=false`
   );
   const currencySymbol = currency === "USD" ? "$" : "₱";
 
