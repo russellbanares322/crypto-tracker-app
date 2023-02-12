@@ -10,7 +10,7 @@ import { Chart } from "../Chart/Chart";
 const DisplaySingleCoin = () => {
   const { currency } = useContext(CoinContext);
   const { id } = useParams();
-  const { response, isLoading } = useFetch(`/coins/${id}`);
+  const { response, isLoading } = useFetch(`/${id}`);
 
   return (
     <div
