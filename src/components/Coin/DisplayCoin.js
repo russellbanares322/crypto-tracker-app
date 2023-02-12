@@ -1,4 +1,4 @@
-import React, { useContext } from "react";
+import React, { useContext, useEffect } from "react";
 import { Button, Table, Typography } from "antd";
 import styles from "./styles.module.css";
 import { useNavigate } from "react-router-dom";
@@ -9,11 +9,20 @@ import { HiArrowTrendingUp, HiArrowTrendingDown } from "react-icons/hi2";
 const DisplayCoin = () => {
   const { Title } = Typography;
   const navigate = useNavigate();
-  const { currency } = useContext(CoinContext);
+  const { currency, setCurrency } = useContext(CoinContext);
   const { response } = useFetch(
-    `coins/markets?vs_currency=${currency.toLowerCase()}&order=market_cap_desc&per_page=50&page=1&sparkline=false`
+    `coins/markets?vs_currency=${
+      currency.toLowerCase() || "usd"
+    }&order=market_cap_desc&per_page=50&page=1&sparkline=false`
   );
   const currencySymbol = currency === "USD" ? "$" : "₱";
+
+  useEffect(() => {
+    const currentCurrency = localStorage.getItem("currency");
+    if (currentCurrency) {
+      setCurrency(currentCurrency);
+    }
+  }, []);
 
   //Table Column
   const columns = [
