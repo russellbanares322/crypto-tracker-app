@@ -4,26 +4,24 @@
     display: flex;
     justify-content: space-between;
     align-items: center;
-    width: auto;
+    width: 100%;
 }
 .ul > li{
     text-align: start;
     list-style: none;
-    padding-top: 1.2rem;
+    padding: 1.2rem 1rem;
     font-size: 1.1rem;
     color: #21201E;
     font-weight: 500;
     cursor: pointer;
+    margin-right: auto;
 }
 .span {
     color: #19b84eea;
 }
 
 .selectDiv{
-    display: flex !important;
-    justify-content: flex-end !important;
-    align-items: flex-end !important;
-    margin: 2rem 4rem;
+    margin: 2rem 1.5rem;
 }
 .selectDiv > select{
     cursor: pointer;
