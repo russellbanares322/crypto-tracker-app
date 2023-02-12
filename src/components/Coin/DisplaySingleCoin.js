@@ -1,4 +1,4 @@
-import React, { useContext, useEffect } from "react";
+import React, { useContext } from "react";
 import CoinContext from "../context/CoinContext";
 import styles from "./styles.module.css";
 import ReactHtmlParser from "react-html-parser";
@@ -8,16 +8,9 @@ import { useParams } from "react-router-dom";
 import { Chart } from "../Chart/Chart";
 
 const DisplaySingleCoin = () => {
-  const { currency, setCurrency } = useContext(CoinContext);
+  const { currency } = useContext(CoinContext);
   const { id } = useParams();
   const { response, isLoading } = useFetch(`/coins/${id}`);
-
-  useEffect(() => {
-    const currentCurrency = localStorage.getItem("currency");
-    if (currentCurrency) {
-      setCurrency(currentCurrency);
-    }
-  }, []);
 
   return (
     <div

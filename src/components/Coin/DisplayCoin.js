@@ -1,5 +1,5 @@
-import React, { useContext, useEffect } from "react";
-import { Button, Table, Typography } from "antd";
+import React, { useContext } from "react";
+import { Button, Table } from "antd";
 import styles from "./styles.module.css";
 import { useNavigate } from "react-router-dom";
 import CoinContext from "../context/CoinContext";
@@ -7,22 +7,14 @@ import useFetch from "../hooks/useFetch";
 import { HiArrowTrendingUp, HiArrowTrendingDown } from "react-icons/hi2";
 
 const DisplayCoin = () => {
-  const { Title } = Typography;
   const navigate = useNavigate();
-  const { currency, setCurrency } = useContext(CoinContext);
+  const { currency } = useContext(CoinContext);
   const { response } = useFetch(
-    `coins/markets?vs_currency=${
+    `/coins/markets?vs_currency=${
       currency.toLowerCase() || "usd"
     }&order=market_cap_desc&per_page=50&page=1&sparkline=false`
   );
   const currencySymbol = currency === "USD" ? "$" : "₱";
-
-  useEffect(() => {
-    const currentCurrency = localStorage.getItem("currency");
-    if (currentCurrency) {
-      setCurrency(currentCurrency);
-    }
-  }, []);
 
   //Table Column
   const columns = [
@@ -104,9 +96,7 @@ const DisplayCoin = () => {
 
   return (
     <div className={styles.body}>
-      <Title className={styles.title} level={2}>
-        Cryptocurrency Price
-      </Title>
+      <p className={styles.title}>Cryptocurrency Price</p>
       <div className={styles.table}>
         <Table
           rowKey="id"

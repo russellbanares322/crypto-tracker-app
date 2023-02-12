@@ -7,6 +7,7 @@
     font-size: 2.5rem;  
     margin-bottom: 6rem;
     position: relative;
+    font-weight: 400;
 }
 .carouselTitle::after {
     content: '';
@@ -70,6 +71,7 @@
         text-align: center;
         font-size: 2rem;
         position: relative;
+        font-weight: 400;
     }
     .carouselTitle::after {
         content: '';

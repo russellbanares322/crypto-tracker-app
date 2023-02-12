@@ -20,7 +20,7 @@ export const Chart = () => {
   const currencySymbol = currency === "USD" ? "$" : "₱";
 
   const { response } = useFetch(
-    `coins/${id}/market_chart?vs_currency=${currency}&days=7`
+    `/coins/${id}/market_chart?vs_currency=${currency}&days=7`
   );
 
   const coinChartData = response?.prices.map((val) => ({

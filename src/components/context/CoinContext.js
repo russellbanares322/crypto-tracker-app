@@ -20,6 +20,13 @@ export const CryptoProvider = ({ children }) => {
     localStorage.setItem("currency", e.target.value);
   };
 
+  useEffect(() => {
+    const currentCurrency = localStorage.getItem("currency");
+    if (currentCurrency) {
+      setCurrency(currentCurrency);
+    }
+  }, []);
+
   return (
     <CoinContext.Provider
       value={{ currency, setCurrency, handleChange, isLoading }}

@@ -1,4 +1,4 @@
-import React, { useContext, useEffect } from "react";
+import React, { useContext } from "react";
 import AliceCarousel from "react-alice-carousel";
 import CoinContext from "../context/CoinContext";
 import styles from "./styles.module.css";
@@ -8,21 +8,15 @@ import { HiArrowTrendingUp, HiArrowTrendingDown } from "react-icons/hi2";
 
 const Carousel = () => {
   const navigate = useNavigate();
-  const { currency, setCurrency } = useContext(CoinContext);
+  const { currency } = useContext(CoinContext);
 
   //Fetching of trending coins
   const { response } = useFetch(
-    `coins/markets?vs_currency=${
+    `/coins/markets?vs_currency=${
       currency.toLowerCase() || "usd"
     }&order=gecko_desc&per_page=10&page=1&sparkline=false&price_change_percentage=24h`
   );
 
-  useEffect(() => {
-    const currentCurrency = localStorage.getItem("currency");
-    if (currentCurrency) {
-      setCurrency(currentCurrency);
-    }
-  }, []);
   //Carousel data
   const handleDragStart = (e) => e.preventDefault();
 

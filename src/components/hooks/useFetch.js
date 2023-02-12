@@ -5,16 +5,9 @@ import CoinContext from "../context/CoinContext";
 const useFetch = (url) => {
   const [response, setResponse] = useState(null);
   const [isLoading, setIsLoading] = useState(false);
-  const { currency, setCurrency } = useContext(CoinContext);
+  const { currency } = useContext(CoinContext);
 
   axios.defaults.baseURL = process.env.REACT_APP_COIN_API;
-
-  useEffect(() => {
-    const currentCurrency = localStorage.getItem("currency");
-    if (currentCurrency) {
-      setCurrency(currentCurrency);
-    }
-  }, []);
 
   const handleFetchData = async () => {
     try {
