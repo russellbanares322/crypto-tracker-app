@@ -1,30 +1,24 @@
-import { Row, Col } from "antd";
-import React, { useContext, useEffect } from "react";
+import React, { useContext } from "react";
 import CoinContext from "../context/CoinContext";
 import styles from "./styles.module.css";
 import ReactHtmlParser from "react-html-parser";
 import { Triangle } from "react-loader-spinner";
+import useFetch from "../hooks/useFetch";
+import { useParams } from "react-router-dom";
+import { Chart } from "../Chart/Chart";
 
-const DisplaySingleCoin = ({
-  isLoading,
-  image,
-  name,
-  market_data,
-  market_cap_rank,
-  description,
-}) => {
-  const { currency, setCurrency } = useContext(CoinContext);
-
-  useEffect(() => {
-    const currencyData = localStorage.getItem("currency", currency);
-    if (currencyData) {
-      setCurrency(currencyData);
-    }
-    // eslint-disable-next-line
-  }, []);
+const DisplaySingleCoin = () => {
+  const { currency } = useContext(CoinContext);
+  const { id } = useParams();
+  const { response, isLoading } = useFetch(`/coins/${id}`);
 
   return (
-    <div className={styles.body}>
+    <div
+      className={styles.body}
+      style={{
+        height: isLoading ? "100vh" : "auto",
+      }}
+    >
       {isLoading ? (
         <div className={styles.coinInfoLoader}>
           <Triangle
@@ -36,6 +30,7 @@ const DisplaySingleCoin = ({
               display: "flex",
               justifyContent: "center",
               alignItems: "center",
+              paddingTop: "9rem",
             }}
             wrapperClassName=""
             visible={true}
@@ -43,37 +38,38 @@ const DisplaySingleCoin = ({
         </div>
       ) : (
         <>
-          <Row>
-            <Col lg={12} xl={12} md={12} sm={24}>
-              <p className={styles.coinName}>{name}</p>
+          <div className={styles.coin_info_wrapper} key={response?.id}>
+            <div className={styles.coin_details_wrapper}>
+              <p className={styles.coinName}>{response?.name}</p>
               <p className={styles.coinPrice}>
                 <strong>Current Price:</strong> {currency === "USD" ? "$" : "₱"}
-                {market_data?.current_price[
+                {response?.market_data.current_price[
                   currency.toLowerCase()
                 ].toLocaleString()}
               </p>
               <p className={styles.coinPrice}>
                 <strong>Market Cap:</strong> {currency === "USD" ? "$" : "₱"}
-                {market_data?.market_cap[currency.toLowerCase()]
+                {response?.market_data.market_cap[currency.toLowerCase()]
                   .toLocaleString()
                   .slice(0, -4)}
                 M
               </p>
               <p className={styles.coinRank}>
-                <strong>Rank:</strong> {market_cap_rank}
+                <strong>Rank:</strong> {response?.market_cap_rank}
               </p>
               <p className={styles.coinDesc}>
-                {ReactHtmlParser(description?.en.split(". ")[0])}.
+                {ReactHtmlParser(response?.description.en.split(". ")[0])}.
               </p>
-            </Col>
-            <Col lg={12} xl={12} md={12} sm={24}>
+            </div>
+            <div className={styles.image_wrapper}>
               <img
                 alt="coinImg"
                 className={styles.singleCoinImg}
-                src={image?.large}
+                src={response?.image.large}
               />
-            </Col>
-          </Row>
+            </div>
+          </div>
+          <Chart />
         </>
       )}
     </div>

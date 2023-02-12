@@ -1,21 +1,19 @@
-import React, { useContext, useEffect } from "react";
+import React, { useContext } from "react";
 import { Button, Table, Typography } from "antd";
 import styles from "./styles.module.css";
 import { useNavigate } from "react-router-dom";
 import CoinContext from "../context/CoinContext";
+import useFetch from "../hooks/useFetch";
+import { HiArrowTrendingUp, HiArrowTrendingDown } from "react-icons/hi2";
 
-const DisplayCoin = ({ data }) => {
+const DisplayCoin = () => {
   const { Title } = Typography;
   const navigate = useNavigate();
-
-  const { currency, setCurrency, handleChange } = useContext(CoinContext);
-
-  useEffect(() => {
-    const currencyData = localStorage.getItem("currency", currency);
-    if (currencyData) {
-      setCurrency(currencyData);
-    }
-  }, []);
+  const { currency } = useContext(CoinContext);
+  const { response } = useFetch(
+    `coins/markets?vs_currency=${currency}&order=market_cap_desc&per_page=50&page=1&sparkline=false`
+  );
+  const currencySymbol = currency === "USD" ? "$" : "₱";
 
   //Table Column
   const columns = [
@@ -47,9 +45,7 @@ const DisplayCoin = ({ data }) => {
       key: "current_price",
       sorter: (a, b) => a.current_price - b.current_price,
       render: (value) => {
-        return currency === "USD"
-          ? "$" + value.toLocaleString()
-          : "₱" + value.toLocaleString();
+        return currencySymbol + value.toLocaleString();
       },
     },
     {
@@ -60,8 +56,18 @@ const DisplayCoin = ({ data }) => {
       render: (value) => {
         return (
           <p style={{ color: value < 0 ? "red" : "green" }}>
-            {value > 0 && "+"}
-            {value.toFixed(2) + "%"}
+            {value > 0 ? (
+              <HiArrowTrendingUp
+                size={18}
+                style={{ paddingTop: "0.4rem", marginRight: "0.3rem" }}
+              />
+            ) : (
+              <HiArrowTrendingDown
+                size={18}
+                style={{ paddingTop: "0.4rem", marginRight: "0.3rem" }}
+              />
+            )}
+            {Math.abs(value.toFixed(2)) + "%"}
           </p>
         );
       },
@@ -76,7 +82,7 @@ const DisplayCoin = ({ data }) => {
           <Button
             className={styles.tableBttn}
             onClick={() => {
-              navigate(`/coin-info/${coin.id}`);
+              navigate(`/coin-info/${coin?.id}`);
               window.scroll(0, 0);
             }}
           >
@@ -86,25 +92,17 @@ const DisplayCoin = ({ data }) => {
       },
     },
   ];
+
   return (
     <div className={styles.body}>
       <Title className={styles.title} level={2}>
         Cryptocurrency Price
       </Title>
-      <div className={styles.selectDiv}>
-        <select onChange={handleChange}>
-          <option value={currency} style={{ display: "none" }}>
-            {currency}
-          </option>
-          <option value="USD">USD</option>
-          <option value="PHP">PHP</option>
-        </select>
-      </div>
       <div className={styles.table}>
         <Table
           rowKey="id"
           columns={columns}
-          dataSource={data}
+          dataSource={response}
           scroll={{
             y: 500,
             x: 1000,

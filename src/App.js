@@ -1,11 +1,11 @@
 import MainLayout from "./components/Main/MainLayout";
 import Navbar from "./components/Navbar/Navbar";
 import "./App.css";
-import CoinInfo from "./components/Coin/CoinInfo";
 import { Routes, Route } from "react-router-dom";
 import { useContext } from "react";
 import CoinContext from "./components/context/CoinContext";
 import { Triangle } from "react-loader-spinner";
+import DisplaySingleCoin from "./components/Coin/DisplaySingleCoin";
 
 const App = () => {
   const { isLoading } = useContext(CoinContext);
@@ -24,7 +24,6 @@ const App = () => {
               alignItems: "center",
               paddingTop: "15rem",
             }}
-            wrapperClassName=""
             visible={true}
           />
         </div>
@@ -33,8 +32,9 @@ const App = () => {
           <Navbar />
           <Routes>
             <Route path="/" element={<MainLayout />} />
-            <Route path="/coin-info/:id" element={<CoinInfo />} />
+            <Route path="/coin-info/:id" element={<DisplaySingleCoin />} />
           </Routes>
+          <footer>Created by Russ 🤟</footer>
         </>
       )}
     </>

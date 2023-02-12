@@ -2,8 +2,8 @@ import { Row, Col, Image } from "antd";
 import React from "react";
 import styles from "./styles.module.css";
 import mainImage from "../../images/crypto.svg";
-import Coin from "../Coin/Coin";
 import Carousel from "../Carousel/Carousel";
+import DisplayCoin from "../Coin/DisplayCoin";
 
 const MainLayout = () => {
   return (
@@ -25,8 +25,7 @@ const MainLayout = () => {
       <div>
         <Carousel />
       </div>
-      <Coin />
-      <footer>Created by Russ</footer>
+      <DisplayCoin />
     </div>
   );
 };

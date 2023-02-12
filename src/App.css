@@ -14,3 +14,7 @@ footer {
     background-color: #CFD8D5;
     height: 100vh;
 }
+.recharts-cartesian-axis-tick {    
+    font-size: 0.7rem;
+    color: black;
+}
